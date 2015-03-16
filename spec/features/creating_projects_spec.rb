@@ -30,11 +30,4 @@ feature 'Creating Projects'  do
     expect(page).to have_content("Name can't be blank")
   end
 
-  scenario "Description must be longer than 10 characters" do
-    fill_in "Title", with: "Non-standars complience"
-    fill_in "Description", with: "it sucks"
-    click_button "Create Ticket"
-    expect(page).to have_content("Ticket has not been created.")
-    expect(page).to have_content("Description is too short")
-  end
 end
