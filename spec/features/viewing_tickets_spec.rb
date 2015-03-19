@@ -3,19 +3,25 @@ feature "Viewing tickets" do
   before do 
     textmate_2 = FactoryGirl.create(:project, name: "Text Mate 2")
 
-    FactoryGirl.create(:ticket, 
+    user = FactoryGirl.create(:user)
+
+    ticket = FactoryGirl.create(:ticket, 
       project: textmate_2,
       title: "Make it shiny!",
       description: "Gradients!"
       )
 
+    ticket.update(user: user)
     internet_explorer = FactoryGirl.create(:project, name: "Internet Explorer")
-
-    FactoryGirl.create(:ticket, 
+    
+    
+    ticket = FactoryGirl.create(:ticket, 
       project: internet_explorer,
       title: "Standarts complience.",
       description: "Isn't a joke."
     )
+
+    ticket.update(user:user)
     visit '/'
   end
 
