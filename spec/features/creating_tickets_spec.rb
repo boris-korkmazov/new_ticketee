@@ -1,9 +1,9 @@
 require "rails_helper"
 
 feature "Creating Tikets" do
+  let!(:user) { FactoryGirl.create(:user)}
   before do
     project = FactoryGirl.create(:project, name: "Internet Explorer")
-    user = FactoryGirl.create(:user)
     visit '/'
     click_link project.name
 
@@ -25,7 +25,7 @@ feature "Creating Tikets" do
     fill_in "Description", with: "My pages are ugly!"
     click_button "Create Ticket"
     within "#ticket #author" do
-      expect(page).to have_content("Created by sample@example.com")
+      expect(page).to have_content("Created by #{user.email}")
     end
     expect(page).to have_content("Ticket has been created.")
   end
