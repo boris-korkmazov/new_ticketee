@@ -49,13 +49,21 @@ RSpec.describe TicketsController, type: :controller do
       cannot_update_tickets!
     end
 
-    it "cannot update a ticket without permition" do
+    it "cannot update a ticket without permission" do
       put :update, {project_id: project.id,
                     id: ticket.id,
                     ticket: {}
                     }
 
       cannot_update_tickets! 
+    end
+
+    it "cannot delete a ticket without permission" do
+      delete :destroy, { project_id: project.id, id: ticket.id }
+
+      expect(response).to redirect_to project
+      message = "You cannot delete tickets from this project."
+      expect(flash[:alert]).to eql(message)
     end
   end
 
