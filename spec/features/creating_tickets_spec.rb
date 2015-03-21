@@ -5,6 +5,7 @@ feature "Creating Tikets" do
   before do
     project = FactoryGirl.create(:project, name: "Internet Explorer")
     define_permission!(user, "view", project)
+    define_permission!(user, "create tickets", project)
 
     visit '/'
 
