@@ -4,10 +4,10 @@ feature "Creating Tikets" do
   let!(:user) { FactoryGirl.create(:user)}
   before do
     project = FactoryGirl.create(:project, name: "Internet Explorer")
+    define_permission!(user, "view", project)
+
     visit '/'
     click_link project.name
-
-    click_link "New Ticket"
 
     message = "You need to sign in or sign up before continuing."
     expect(page).to have_content(message)

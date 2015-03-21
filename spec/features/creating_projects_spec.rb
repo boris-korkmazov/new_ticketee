@@ -6,7 +6,7 @@ feature 'Creating Projects'  do
     visit '/'
     click_link 'New Project'
   end
-
+  
   scenario 'can create a project' do 
     
 

@@ -1,8 +1,11 @@
 class ProjectsController < ApplicationController
 
+  before_action :authorize_admin!, except:[:index, :show]
+  
+  before_action :require_signin!, only: [:show]
+ 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   
-  before_action :authorize_admin!, except:[:index, :show]
 
   def index
     @projects = Project.all
@@ -20,7 +23,6 @@ class ProjectsController < ApplicationController
       redirect_to @project
     else
       flash[:alert] = "Project has not been created."
-
       render :new
     end
   end
@@ -54,7 +56,11 @@ class ProjectsController < ApplicationController
     end
 
     def set_project
-      @project = Project.find(params[:id])
+      @project = if current_user.admin?
+        Project.find(params[:id])
+      else
+        Project.viewable_by(current_user).find(params[:id])
+      end
     rescue ActiveRecord::RecordNotFound
       flash[:alert]= "The project you were looking for could not be found."
       redirect_to projects_path
@@ -62,4 +68,4 @@ class ProjectsController < ApplicationController
 
 
 
-end
+end 
