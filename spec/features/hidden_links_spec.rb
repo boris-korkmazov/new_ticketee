@@ -83,7 +83,7 @@ feature "hidden links" do
       visit project_path(project)
 
       click_link ticket.title
-      assert_link_for "Delete Ticket"
+      assert_link_for "Delete Ticket" 
     end
 
     scenario "Delete ticket link is shown to a user with permission" do

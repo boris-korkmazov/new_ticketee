@@ -1,3 +1,4 @@
 <h2><%= @user %></h2>
 <%=link_to "Edit User", [:edit, :admin, @user] %>
 <%= link_to "Delete User", [:admin, @user], method: :delete, data: {confirm: "Are your sure?"}%>
+<%= link_to "Permissions", admin_user_permissions_path(@user) %>
