@@ -59,3 +59,5 @@ end
 
 gem "cancan"
 
+gem "carrierwave"
+
