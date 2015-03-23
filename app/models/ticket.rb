@@ -1,5 +1,5 @@
 class Ticket < ActiveRecord::Base
- 
+  
   belongs_to :project
 
   belongs_to :user
@@ -8,6 +8,8 @@ class Ticket < ActiveRecord::Base
 
   validates :description, presence: true, length: { minimum: 10 }
 
-  mount_uploader :asset, AssetUploader
+  has_many :assets
+
+  accepts_nested_attributes_for :assets
 
 end
