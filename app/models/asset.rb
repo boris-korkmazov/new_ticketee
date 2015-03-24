@@ -1,3 +1,20 @@
 class Asset < ActiveRecord::Base
   mount_uploader :asset, AssetUploader
+
+  before_save :update_content_type
+
+  belongs_to :ticket
+
+  private
+
+  def update_content_type
+
+    if asset.present?
+
+      self.content_type = asset.file.content_type
+
+    end
+
+  end
+
 end
