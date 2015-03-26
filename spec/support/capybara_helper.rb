@@ -12,3 +12,9 @@ end
 RSpec.configure do |c|
   c.include CapybaraHelper, :type => :feature
 end
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
