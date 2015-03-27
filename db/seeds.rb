@@ -14,7 +14,7 @@ Project.create(name: "Ticketee Beta")
 State.all.each do |single|
   single.destroy
 end
-State.create(:name => "New", :background=> "#85ff00", :color=> "white")
+State.create(:name => "New", :background=> "#85ff00", :color=> "white", default: true)
 
 State.create(:name => "Open", :background=> "#00CFFD", :color=> "white")
 

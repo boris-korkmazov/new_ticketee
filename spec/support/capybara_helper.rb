@@ -6,6 +6,11 @@ module CapybaraHelper
   def assert_link_for(text)
     expect(page).to(have_css("a", :text => text), "Expected to see the #{text} link, but did not.") 
   end
+
+  def state_line_for(state)
+    state = State.find_by_name!(state)
+    "#state_#{state.id}"
+  end
 end
 
 
