@@ -11,6 +11,15 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <style type="text/css">
+    <% for state in @states %>
+      .state_<%= state.name.parameterize%>{
+        background: <%= state.background%>;
+        color:<%= state.color %>;
+      }
+    <%end%>
+  </style>
 </head>
 <body>
   <nav>

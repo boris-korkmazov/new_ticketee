@@ -4,7 +4,7 @@ module TicketsHelper
       if comment.state
         previous_state = comment.previous_state
         if previous_state && comment.state != previous_state
-          render "#{previous_state} &rarr; #{comment.state}"
+          "#{previous_state.name} -> #{comment.state.name}"
         else
           render comment.state
         end
