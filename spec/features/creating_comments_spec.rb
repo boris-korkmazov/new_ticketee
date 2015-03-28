@@ -33,6 +33,7 @@ feature "Creating comments" do
   end
 
   scenario "Changing a ticket's state" do
+    define_permission!(user, "change states", project)
     click_link ticket.title
     fill_in "Text", :with=> "This is real issue"
     select "Open", :from => "State"
@@ -46,4 +47,12 @@ feature "Creating comments" do
       expect(page).to have_content("State: Open")
     end
   end
+
+  scenario "A user without permission cannot change the state" do
+    click_link ticket.title
+    find_element = lambda { find("#comment_state_id") }
+    message = "Expected not to see #comment_state_id, but did."
+    expect(find_element).to raise_error(Capybara::ElementNotFound), message
+  end
+
 end
