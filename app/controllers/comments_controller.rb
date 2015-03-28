@@ -6,7 +6,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @ticket.comments.build(comment_params)
-    p @comment
     @comment.user = current_user
     if @comment.save
       @ticket.reload
@@ -25,6 +24,10 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :state_id)
+    if can?('change states', @ticket.project)
+      params.require(:comment).permit(:text, :state_id)
+    else
+      params.require(:comment).permit(:text)
+    end
   end
 end
