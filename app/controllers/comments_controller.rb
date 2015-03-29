@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    if can?('change states', @ticket.project)
+    if current_user.admin? || can?('change states'.to_sym, @ticket.project)
       params.require(:comment).permit(:text, :state_id)
     else
       params.require(:comment).permit(:text)

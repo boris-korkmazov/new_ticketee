@@ -62,7 +62,7 @@ feature "Creating Tikets" do
       expect(page).to have_content("gradient.txt")
     end
   end
-=end
+
   scenario "Creating a ticket with an attachment", js: true, :driver => :chrome do
     fill_in "Title", with: "Add documentation for blink tag"
     fill_in "Description", with: "Blink tag's speed attribute"
@@ -80,6 +80,19 @@ feature "Creating Tikets" do
     within("#ticket .assets") do
       expect(page).to have_content("speed.txt")
       expect(page).to have_content("spin.txt")
+    end
+  end
+=end
+  scenario "Creating a ticket with tags" do
+    fill_in "Title", with: "Non-standards complience"
+    fill_in "Description", with: "My pages are ugly!"
+    fill_in "Tags", with: "browser visual"
+    click_button "Create Ticket"
+    expect(page).to have_content("Ticket has been created.")
+
+    within "#ticket #tags" do
+      expect(page).to have_content("browser")
+      expect(page).to have_content("visual")
     end
   end
 end
