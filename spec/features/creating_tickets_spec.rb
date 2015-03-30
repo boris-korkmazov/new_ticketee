@@ -6,6 +6,7 @@ feature "Creating Tikets" do
     project = FactoryGirl.create(:project, name: "Internet Explorer")
     define_permission!(user, "view", project)
     define_permission!(user, "create tickets", project)
+    define_permission!(user, "tag", project)
 
     visit '/'
 
@@ -84,6 +85,7 @@ feature "Creating Tikets" do
   end
 =end
   scenario "Creating a ticket with tags" do
+
     fill_in "Title", with: "Non-standards complience"
     fill_in "Description", with: "My pages are ugly!"
     fill_in "Tags", with: "browser visual"

@@ -6,6 +6,7 @@ feature "Creating comments" do
   let!(:ticket) { FactoryGirl.create(:ticket, project: project, user: user) }
   before do
     define_permission!(user, "view", project)
+    define_permission!(user, "tag", project)
     FactoryGirl.create(:state, name: "Open")
     sign_in_as!(user)
     visit '/'
@@ -55,4 +56,20 @@ feature "Creating comments" do
     expect(find_element).to raise_error(Capybara::ElementNotFound), message
   end
 
+  scenario "Adding a tag to a ticket" do
+    click_link ticket.title
+    within "#ticket #tags" do
+      expect(page).to_not have_content("bug")
+    end
+
+    fill_in "Text", with: "Adding the bug tag"
+    fill_in "Tags", with: "bug"
+    click_button "Create Comment"
+
+    expect(page).to have_content("Comment has been created.")
+
+    within "#ticket #tags" do
+      expect(page).to have_content("bug")
+    end
+  end
 end

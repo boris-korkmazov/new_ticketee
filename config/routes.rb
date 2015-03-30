@@ -22,11 +22,16 @@ Rails.application.routes.draw do
   delete "/signout" => "sessions#destroy"
 
   resources :projects do
-    resources :tickets
+    resources :tickets do
+      get :search, on: :collection
+    end
   end
 
   resources :tickets do
     resources :comments
+    resources :tags do
+      delete :remove, on: :member
+    end
   end
 
   resources :users

@@ -24,10 +24,16 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    if current_user.admin? || can?('change states'.to_sym, @ticket.project)
-      params.require(:comment).permit(:text, :state_id)
-    else
-      params.require(:comment).permit(:text)
+    if not current_user.admin?
+      if cannot?('change states'.to_sym, @ticket.project)
+        params[:comment].delete(:state_id)
+      end
+
+      if cannot?(:"tag", @ticket.project)
+        params[:comment].delete(:tag_names)
+      end
     end
+
+    params.require(:comment).permit(:text, :tag_names, :state_id)
   end
 end

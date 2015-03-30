@@ -53,6 +53,11 @@ class TicketsController < ApplicationController
     redirect_to @project
   end
 
+  def search
+    @tickets = @project.tickets.search(params[:search])
+    render "projects/show"
+  end
+
   private
     def set_project
       @project = Project.for(current_user).find(params[:project_id])
@@ -66,6 +71,11 @@ class TicketsController < ApplicationController
     end
 
     def ticket_params
+      if not current_user.admin?
+        if cannot?(:tag, @project)
+          params[:ticket].delete(:tag_names)
+        end
+      end
       params.require(:ticket).permit(:title, :description,{ assets_attributes: [:asset] }, :tag_names)
     end
 

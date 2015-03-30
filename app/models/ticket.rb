@@ -22,6 +22,10 @@ class Ticket < ActiveRecord::Base
 
   attr_accessor :tag_names
 
+  searcher do
+    label :tag, :from=> :tags, :field=> :name
+  end
+
   private
     def associate_tags
       if tag_names

@@ -65,3 +65,5 @@ gem "cancan"
 
 gem "carrierwave"
 
+gem "searcher", :git => "git://github.com/radar/searcher"
+
