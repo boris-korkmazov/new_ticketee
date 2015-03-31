@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   resources :projects do
     resources :tickets do
       get :search, on: :collection
+
+      post :watch, on: :member
     end
   end
 

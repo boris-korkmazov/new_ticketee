@@ -8,7 +8,7 @@ class Comment < ActiveRecord::Base
 
   validates :text, presence: true
 
-  after_create :set_ticket_state, :associate_tags_with_ticket
+  after_create :set_ticket_state, :associate_tags_with_ticket, :creator_watches_ticket
 
   before_create :set_previous_state
 
@@ -32,5 +32,9 @@ class Comment < ActiveRecord::Base
         self.ticket.tags += tags
         self.ticket.save
       end
+    end
+
+    def creator_watches_ticket
+      ticket.watchers << user
     end
 end
