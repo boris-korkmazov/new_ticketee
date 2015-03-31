@@ -1,8 +1,8 @@
 class Ticket < ActiveRecord::Base
-
+  before_create :creator_watches_me
+  
   before_create :associate_tags
 
-  after_create :creator_watches_me
   
   belongs_to :project
 
@@ -43,7 +43,7 @@ class Ticket < ActiveRecord::Base
 
     def creator_watches_me
       if user
-        self.watchers << user unless self.watchers.include?(user)
+        self.watchers << user
       end
     end
 end

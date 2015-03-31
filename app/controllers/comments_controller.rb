@@ -8,7 +8,6 @@ class CommentsController < ApplicationController
     @comment = @ticket.comments.build(comment_params)
     @comment.user = current_user
     if @comment.save
-      @ticket.reload
       redirect_to [@ticket.project, @ticket], notice: "Comment has been created."
     else
       @states = State.all

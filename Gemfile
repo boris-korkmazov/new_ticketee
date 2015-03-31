@@ -47,6 +47,9 @@ group :development, :test do
   gem 'guard-rspec'
 
   gem 'spring-commands-rspec'
+
+  gem "gmail"
+
 end
 
 group :test do

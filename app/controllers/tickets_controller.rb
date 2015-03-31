@@ -67,7 +67,7 @@ class TicketsController < ApplicationController
       flash[:notice] = "You are now watching this ticket."
     end
 
-    redirect_to project_ticket_path(@ticket.project, @ticket)
+    redirect_to [@ticket.project, @ticket]
   end
 
   private
