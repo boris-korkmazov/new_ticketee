@@ -26,5 +26,10 @@ RSpec.describe Notifier, type: :mailer do
       expect(email.body).to include("#{comment.user.email} wrote:")
       expect(email.body).to include(comment.text)
     end
+
+    it "correct sets the Reply-To" do
+      address = ["boriskorkmazov1989+#{project.id}+#{ticket.id}@gmail.com"]
+      expect(email.reply_to).to eq address
+    end
   end
 end

@@ -8,6 +8,6 @@ class Notifier < ApplicationMailer
     @ticket = comment.ticket
     @project = @ticket.project
     subject = "[ticketee] #{@project.name} - #{@ticket.title}"
-    mail(to: user.email, subject: subject)
+    mail(to: user.email, subject: subject, reply_to: "<boriskorkmazov1989+#{@project.id}+#{@ticket.id}@gmail.com>")
   end
 end
