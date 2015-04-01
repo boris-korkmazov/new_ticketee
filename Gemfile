@@ -48,7 +48,9 @@ group :development, :test do
 
   gem 'spring-commands-rspec'
 
-  gem "gmail"
+  gem 'gmail'
+
+  gem 'nokogiri'
 
 end
 
@@ -62,7 +64,9 @@ group :test do
   
   gem 'database_cleaner', '1.0.1'
 
-  gem "email_spec"
+  gem 'email_spec'
+
+  gem 'rack-test'
 
 end
 
@@ -73,3 +77,6 @@ gem "carrierwave"
 gem "searcher", :git => "git://github.com/radar/searcher"
 
 gem 'rails-observers'
+
+gem 'responders'
+

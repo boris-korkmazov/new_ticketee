@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330150131) do
+ActiveRecord::Schema.define(version: 20150401143837) do
 
   create_table "assets", force: :cascade do |t|
     t.string   "asset"
@@ -89,9 +89,10 @@ ActiveRecord::Schema.define(version: 20150330150131) do
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "admin",           default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.boolean  "admin",                default: false
+    t.string   "authentication_token"
   end
 
 end
