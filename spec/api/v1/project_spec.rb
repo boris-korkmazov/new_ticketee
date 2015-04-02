@@ -124,4 +124,14 @@ describe "/api/v1/projects", :type=> :api do
       expect(last_response.body).to eql errors.to_json
     end
   end
+
+  context "deleting a project" do
+    let(:url) { "/api/v1/projects/#{project.id}" }
+
+    it "JSON" do
+      delete "#{url}.json", token: token
+
+      expect(last_response.status).to eq 204
+    end
+  end
 end
