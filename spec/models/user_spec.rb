@@ -62,4 +62,14 @@ RSpec.describe User, type: :model do
       expect(user.authenticate("hunter1")).to_not be
     end
   end
+
+  describe "Reset user request count" do
+    it "resets user request count" do
+      user = FactoryGirl.create(:user)
+      user.update_attribute(:request_count, 42)
+      User.reset_request_count!
+      user.reload
+      expect(user.request_count).to eql(0)
+    end
+  end
 end
