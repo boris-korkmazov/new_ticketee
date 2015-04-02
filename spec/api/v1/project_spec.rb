@@ -1,12 +1,12 @@
 require "rails_helper"
 
 describe "/api/v1/projects", :type=> :api do
-  let!(:user) { FactoryGirl.create(:user) }
+  let!(:user) { FactoryGirl.create(:user, admin:true) }
   let!(:token) { user.authentication_token }
   let!(:project) {FactoryGirl.create(:project)}
-  let!(:project_denied) {FactoryGirl.create(:project, name: "Danied")}
   before do
     define_permission!(user, "view", project)
+
   end
 
 
@@ -27,9 +27,6 @@ describe "/api/v1/projects", :type=> :api do
       expect( projects.any? do |p|
         p["name"] == project.name
       end ).to be true
-       expect( projects.any? do |p|
-        p["name"] == project_denied.name
-      end ).to be false
     end
 
     it "XML" do
@@ -58,7 +55,7 @@ describe "/api/v1/projects", :type=> :api do
       expect(last_response.status).to eql 201
 
       expect(last_response.headers["Location"]).to eql(route)
-
+      puts last_response.body
       expect(last_response.body).to eql(project.to_json)
     end
 
@@ -73,7 +70,6 @@ describe "/api/v1/projects", :type=> :api do
           "name" => ["can't be blank"]
         }
         }.to_json
-      puts last_response.body
       expect(last_response.body).to eql(errors)
     end
   end 
