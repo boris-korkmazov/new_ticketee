@@ -22,7 +22,6 @@ class Api::V1::BaseController < ApplicationController
         error = {error: "You must be an admin to do that."}
        # warden.custom_failure!
         render params[:format].to_sym => error, :status=> 401
-        #respond_with(error, status: 404)
       end
     end
 end
