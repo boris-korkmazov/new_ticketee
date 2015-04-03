@@ -75,7 +75,7 @@ gem "cancan"
 
 gem "carrierwave"
 
-gem "searcher"#, git: "git://github.com/radar/searcher"
+gem "searcher", git: "git://github.com/radar/searcher"
 
 gem 'rails-observers'
 
