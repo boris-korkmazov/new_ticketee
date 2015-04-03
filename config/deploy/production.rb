@@ -16,12 +16,11 @@
 # group is considered to be the first unless any  hosts have the primary
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
+ role :app, %w{127.0.0.1}
+ role :web, %w{127.0.0.1}
+ role :db,  %w{127.0.0.1}
 
- #role :app, %w{localhost}, my_property: :my_value
- #role :web, %w{localhost}, other_property: :other_value
- #role :db,  %w{localhost}
-
-
+server "127.0.0.1", user: "ticketeeapp.com", roles: %w{web app db}, port: 2222
 
 # Configuration
 # =============

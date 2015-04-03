@@ -2,7 +2,7 @@ GIT
   remote: git://github.com/radar/searcher
   revision: c2975124e11677825481ced9539f16f0cb0640de
   specs:
-    searcher (0.0.7)
+    searcher (0.0.6)
       activerecord (~> 4.2)
 
 GEM
@@ -60,9 +60,14 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
+    capistrano-passenger (0.0.4)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capybara (2.4.4)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -290,7 +295,9 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
   cancan
+  capistrano-passenger
   capistrano-rails
+  capistrano-rvm
   capybara
   carrierwave
   coffee-rails (~> 4.1.0)

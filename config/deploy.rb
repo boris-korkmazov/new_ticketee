@@ -1,13 +1,13 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-load "deploy/assets"
+require 'capistrano/rails/assets'
 
 set :application, 'ticketee'
 set :repo_url, 'git@github.com:boris-korkmazov/new_ticketee.git'
 
 
-set :user, "ticketeeapp.com"
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -39,15 +39,15 @@ set :use_sudo, false
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
-#default_run_options[:shell] = '/bin/bash --login'
 
-
+set :rvm_type, :user                     # Defaults to: :auto
+set :rvm_ruby_version, '2.2'      # Defaults to: 'default'
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except=> {:no_release=> true} do
-    path = File.join(current_path, 'tmp', 'restart.txt')
-    run "#{try_sudo} touch #{path}"
+  task :restart do
+    on roles(:app) do
+      path = File.join(current_path, 'tmp', 'restart.txt')
+      run "#{try_sudo} touch #{path}"
+    end
   end
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
