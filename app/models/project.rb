@@ -17,4 +17,8 @@ class Project < ActiveRecord::Base
   def last_ticket
     tickets.last
   end
+
+  def title
+    self.name
+  end
 end
