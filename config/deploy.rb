@@ -43,15 +43,19 @@ set :keep_releases, 5
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.2'      # Defaults to: 'default'
 
-
+puts release_path
 
 namespace :deploy do
   task :restart do
     on roles(:app) do
       path = File.join(current_path, 'tmp', 'restart.txt')
-      run "#{try_sudo} touch #{path}"
+      execute "#{try_sudo} touch #{path}"
     end
   end
+
+  
+
+
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -61,4 +65,8 @@ namespace :deploy do
     end
   end
 
+  
 end
+
+
+
