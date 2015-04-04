@@ -3,8 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -32,6 +31,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
   gem 'capistrano-rails', group: :development
   gem 'capistrano-passenger',  group: :development
+  #gem 'rvm1-capistrano3', require: false, group: :development
   gem 'capistrano-rvm',  group: :development
   gem 'capistrano-bundler',  group: :development
 group :development, :test do
@@ -53,6 +53,9 @@ group :development, :test do
   gem 'gmail'
 
   gem 'nokogiri'
+  
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
 
 end
 
@@ -81,4 +84,8 @@ gem "searcher", git: "git://github.com/radar/searcher"
 gem 'rails-observers'
 
 gem 'responders'
+
+group :production do
+  gem 'pg'
+end
 

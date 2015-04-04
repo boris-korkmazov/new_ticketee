@@ -6,6 +6,7 @@ set :application, 'ticketee'
 set :repo_url, 'git@github.com:boris-korkmazov/new_ticketee.git'
 
 
+#set :bundle_path, -> { fetch(:default_env)} 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
@@ -41,6 +42,9 @@ set :keep_releases, 5
 
 set :rvm_type, :user                     # Defaults to: :auto
 set :rvm_ruby_version, '2.2'      # Defaults to: 'default'
+
+
+
 namespace :deploy do
   task :restart do
     on roles(:app) do
