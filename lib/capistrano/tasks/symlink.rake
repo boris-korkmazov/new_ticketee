@@ -8,4 +8,4 @@ namespace :deploy do
   end
 end
 
-after 'bundler:install', 'deploy:symlink_database_yml'
+before 'deploy:set_current_revision', 'deploy:symlink_database_yml'

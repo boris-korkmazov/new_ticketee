@@ -28,6 +28,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Unicorn as the app server
  gem 'unicorn'
 
+
+ gem 'sqlite3'
 # Use Capistrano for deployment
   gem 'capistrano-rails', group: :development
   gem 'capistrano-passenger',  group: :development
@@ -53,10 +55,7 @@ group :development, :test do
   gem 'gmail'
 
   gem 'nokogiri'
-  
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
-
+ 
 end
 
 group :test do
