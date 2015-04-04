@@ -1,18 +1,17 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-require 'capistrano/rails/assets'
-
 set :application, 'ticketee'
-set :repo_url, 'git@github.com:boris-korkmazov/new_ticketee.git'
 
+set :repo_url, 'git@github.com:boris-korkmazov/new_ticketee.git'
 
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/home/ticketeeapp.com/apps/#{application}'
+
+set :deploy_to, "/home/ticketeeapp.com/apps/#{fetch(:application)}"
 
 # Default value for :scm is :git
 set :scm, :git
