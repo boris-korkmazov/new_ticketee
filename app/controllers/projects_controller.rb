@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
  
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   
+  caches_action :show
 
   def index
     @projects = Project.for(current_user)
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @tickets = @project.tickets
+    @tickets = @project.tickets.page(params[:page])
   end
 
   def edit

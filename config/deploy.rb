@@ -18,6 +18,8 @@ set :deploy_to, "/home/ticketeeapp.com/apps/#{fetch(:application)}"
 set :scm, :git
 
 set :use_sudo, false
+
+set :rails_env, :production
 # Default value for :format is :pretty
 # set :format, :pretty
 
@@ -65,7 +67,18 @@ namespace :deploy do
     end
   end
 
+  task :dbseed do
+    on roles(:app) do
+      within release_path do
+        with rails_env: fetch(:rails_env)  do
+          execute ("cd #{release_path}")
+          execute  :rake, 'db:seed'
+        end
+      end
+    end
+  end
   
+  after "deploy:migrate", :dbseed
 end
 
 

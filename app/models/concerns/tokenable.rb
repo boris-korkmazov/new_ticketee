@@ -9,7 +9,7 @@ module Tokenable
   private
     def generate_token
       self.authentication_token = loop do
-        random_token = SecureRandom.urlsafe_base64(nil, false)
+        random_token = SecureRandom.urlsafe_base64
         break random_token unless self.class.exists?(authentication_token: random_token)
       end
     end

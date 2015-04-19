@@ -54,4 +54,6 @@ Rails.application.routes.draw do
     end
   end
 
+
+  get "/auth/:provider/callback" => "sessions#create"
 end

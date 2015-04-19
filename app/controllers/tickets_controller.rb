@@ -12,6 +12,8 @@ class TicketsController < ApplicationController
 
   before_action :authorize_delete!, only: [:destroy]
 
+  cache_sweeper :tickets_sweeper, only: [:update, :create, :destroy]
+
   def new
     @ticket = @project.tickets.build
     @ticket.assets.build
@@ -54,7 +56,7 @@ class TicketsController < ApplicationController
   end
 
   def search
-    @tickets = @project.tickets.search(params[:search])
+    @tickets = @project.tickets.search(params[:search]).page(params[:page]).per(50)
     render "projects/show"
   end
 

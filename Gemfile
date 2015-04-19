@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.0'
+#ruby-gemset=rails_in_action
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 
@@ -32,7 +33,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
  gem 'sqlite3'
 # Use Capistrano for deployment
   gem 'capistrano-rails', group: :development
-  gem 'capistrano-passenger',  group: :development
+  #gem 'capistrano-passenger',  group: :development
   #gem 'rvm1-capistrano3', require: false, group: :development
   gem 'capistrano-rvm',  group: :development
   gem 'capistrano-bundler',  group: :development
@@ -88,3 +89,11 @@ group :production do
   gem 'pg'
 end
 
+gem "omniauth"
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+
+gem "kaminari"
+
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
